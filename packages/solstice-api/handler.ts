@@ -10,6 +10,9 @@ export const customers: APIGatewayProxyHandler = async (event, _context) => {
     return {
       statusCode: 200,
       body: JSON.stringify(customerData),
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
     };
   } catch (error) {
     return {
@@ -17,6 +20,9 @@ export const customers: APIGatewayProxyHandler = async (event, _context) => {
       body: JSON.stringify({
         message: error,
       }),
+      headers: {
+        "access-control-allow-origin": "*",
+      },
     };
   }
 };
@@ -29,6 +35,9 @@ export const accounts: APIGatewayProxyHandler = async (event, _context) => {
     return {
       statusCode: 200,
       body: JSON.stringify(accountData),
+      headers: {
+        "access-control-allow-origin": "*",
+      },
     };
   } catch (error) {
     return {
@@ -36,6 +45,9 @@ export const accounts: APIGatewayProxyHandler = async (event, _context) => {
       body: JSON.stringify({
         message: error,
       }),
+      headers: {
+        "access-control-allow-origin": "*",
+      },
     };
   }
 };
