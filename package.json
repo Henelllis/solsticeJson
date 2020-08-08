@@ -4,8 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "i": "lerna bootstrap --hoist",
+    "ci": "lerna bootstrap --hoist --ci",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lernaInit": "lerna init"
   },
   "author": "Henry Ellis",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "lerna": "^3.22.1"
+  }
 }
