@@ -8,8 +8,8 @@ import {
   getCustomers,
   selectCount,
   getAccounts,
-} from "./counterSlice";
-import styles from "./Counter.module.css";
+} from "./tableStateSlice";
+import styles from "./Table.module.css";
 
 export function Counter() {
   const count = useSelector(selectCount);
