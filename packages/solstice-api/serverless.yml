@@ -1,24 +1,4 @@
-# Welcome to Serverless!
-#
-# This file is the main config file for your service.
-# It's very minimal at this point and uses default values.
-# You can always add more config options for more control.
-# We've included some commented out config examples here.
-# Just uncomment any of them to get that config option.
-#
-# For full config options, check the docs:
-#    docs.serverless.com
-#
-# Happy Coding!
-
 service: solstice-api
-# app and org for use with dashboard.serverless.com
-#app: your-app-name
-#org: your-org-name
-
-# You can pin your service to only deploy with a specific Serverless version
-# Check out our docs for more details
-# frameworkVersion: "=X.X.X"
 
 provider:
   name: aws
@@ -26,13 +6,6 @@ provider:
   stage: dev
   region: us-east-1
   iamRoleStatements:
-    # - Effect: "Allow"
-    #   Action:
-    #     - "s3:ListBucket"
-    #   Resource:
-    #       "Fn::Join":
-    #         ["", ["arn:aws:s3:::", { "Ref": "ServerlessDeploymentBucket" }]],
-
     - Effect: "Allow"
       Action:
         - "s3:PutObject"
@@ -48,24 +21,31 @@ provider:
         - s3:GetObject
       Resource: "arn:aws:s3:::${self:custom.s3JsonBucket}/*"
 functions:
-  hello:
-    handler: handler.hello
+  customers:
+    handler: handler.customers
     events:
       - http:
-          path: hello
+          path: customers
           method: get
-          #authorizer: authorizer for all of this
+          cors: true
     environment:
       BUCKET_NAME: ${self:custom.s3JsonBucket}
       FILE_NAME: "initial.json"
-
+  accounts:
+    handler: handler.accounts
+    events:
+      - http:
+          path: accounts
+          method: get
+          cors: true
+    environment:
+      BUCKET_NAME: ${self:custom.s3JsonBucket}
+      FILE_NAME: "initial.json"
 plugins:
   - serverless-webpack
-  # - serverless-plugin-custom-domain Pending Route 53 purchase of domain name
 
 custom:
   s3JsonBucket: "solstice-json-bucket"
-  # domain: "api.dev.mosiac.cloud.com"
 
 resources:
   Resources:
@@ -73,16 +53,3 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:custom.s3JsonBucket}
-#  Outputs:
-#     NewOutput:
-#       Description: "Description for the output"
-#       Value: "Some output value"
-
-# The "Outputs" that your AWS CloudFormation Stack should produce.  This allows references between services.
-# Outputs:
-#   UsersTableArn:
-#     Description: The ARN for the User's Table
-#     Value:
-#       'Fn::GetAtt': [usersTable, Arn]
-#     Export:
-#       Name: ${self:service}:${opt:stage}:UsersTableArn # see Fn::ImportValue to use in other services and http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/outputs-section-structure.html for documentation on use.
