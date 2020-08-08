@@ -1,27 +1,41 @@
 import { APIGatewayProxyHandler } from "aws-lambda";
-import { S3 } from "aws-sdk";
+import { Account, JsonFile, Customer } from "solstice-common";
+import { getS3JsonFile } from "./getS3JsonFile";
 
-const s3 = new S3(); // Pass in opts to S3 if necessary
+export const customers: APIGatewayProxyHandler = async (event, _context) => {
+  try {
+    const jsonFileContents: JsonFile = await getS3JsonFile();
+    const customerData: Customer[] = jsonFileContents.customers;
 
-var getParams = {
-  Bucket: process.env.BUCKET_NAME, // your bucket name,
-  Key: process.env.FILE_NAME, // path to the object you're looking for
+    return {
+      statusCode: 200,
+      body: JSON.stringify(customerData),
+    };
+  } catch (error) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({
+        message: error,
+      }),
+    };
+  }
 };
 
-export const hello: APIGatewayProxyHandler = async (event, _context) => {
-  const s3Obj = await s3.getObject(getParams).promise();
+export const accounts: APIGatewayProxyHandler = async (event, _context) => {
+  try {
+    const jsonFileContents: JsonFile = await getS3JsonFile();
+    const accountData: Account[] = jsonFileContents.accounts;
 
-  const objectData = s3Obj.Body.toString("utf-8");
-  const parsedData = JSON.parse(objectData);
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: parsedData,
-        input: event,
-      },
-      null,
-      2
-    ),
-  };
+    return {
+      statusCode: 200,
+      body: JSON.stringify(accountData),
+    };
+  } catch (error) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({
+        message: error,
+      }),
+    };
+  }
 };
