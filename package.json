@@ -11,6 +11,7 @@
   "author": "Henry Ellis",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/styles": "^4.10.0",
     "lerna": "^3.22.1"
   }
 }

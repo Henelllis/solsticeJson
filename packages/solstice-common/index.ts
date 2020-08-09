@@ -21,6 +21,6 @@ export interface Account {
   city: string;
   zip_code: string;
   solar_farm_id: null | number;
-  reason_for_joining: null | number;
+  capacity_share: null | number;
   created_date: string;
 }
