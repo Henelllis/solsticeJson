@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/solsticeTables/static/css/main.69eda509.chunk.css",
+    "main.js": "/solsticeTables/static/js/main.f87b01a9.chunk.js",
+    "main.js.map": "/solsticeTables/static/js/main.f87b01a9.chunk.js.map",
+    "runtime-main.js": "/solsticeTables/static/js/runtime-main.90396404.js",
+    "runtime-main.js.map": "/solsticeTables/static/js/runtime-main.90396404.js.map",
+    "static/js/2.b6d4ac7b.chunk.js": "/solsticeTables/static/js/2.b6d4ac7b.chunk.js",
+    "static/js/2.b6d4ac7b.chunk.js.map": "/solsticeTables/static/js/2.b6d4ac7b.chunk.js.map",
+    "index.html": "/solsticeTables/index.html",
+    "precache-manifest.92b99385779d4984d0af6a8864ab9e25.js": "/solsticeTables/precache-manifest.92b99385779d4984d0af6a8864ab9e25.js",
+    "service-worker.js": "/solsticeTables/service-worker.js",
+    "static/css/main.69eda509.chunk.css.map": "/solsticeTables/static/css/main.69eda509.chunk.css.map",
+    "static/js/2.b6d4ac7b.chunk.js.LICENSE.txt": "/solsticeTables/static/js/2.b6d4ac7b.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.90396404.js",
+    "static/js/2.b6d4ac7b.chunk.js",
+    "static/css/main.69eda509.chunk.css",
+    "static/js/main.f87b01a9.chunk.js"
+  ]
+}
