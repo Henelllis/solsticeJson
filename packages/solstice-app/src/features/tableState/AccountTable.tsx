@@ -6,13 +6,13 @@ import {
   // incrementByAmount,
   // incrementAsync,
   // getCustomers,
-  selectCount,
+  selectAccounts,
   getAccounts,
 } from "./tableStateSlice";
 import styles from "./Table.module.css";
 
 export function AccountTable() {
-  const count = useSelector(selectCount);
+  const accounts = useSelector(selectAccounts);
   const dispatch = useDispatch();
   const [incrementAmount, setIncrementAmount] = useState("2");
 
@@ -20,39 +20,13 @@ export function AccountTable() {
     dispatch(getAccounts());
   }, []);
 
-  return (
-    <div>
-      <div className={styles.row}>
-        <button
-          className={styles.button}
-          aria-label="Increment value"
-          onClick={() => dispatch(increment())}
-        >
-          +
-        </button>
-        <span className={styles.value}>{count}</span>
-        <button
-          className={styles.button}
-          aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
-        >
-          -
-        </button>
-      </div>
-      <div className={styles.row}>
-        <input
-          className={styles.textbox}
-          aria-label="Set increment amount"
-          value={incrementAmount}
-          onChange={(e) => setIncrementAmount(e.target.value)}
-        />
-        <button
-          className={styles.button}
-          onClick={() => dispatch(getAccounts())}
-        >
-          Add Amount
-        </button>
-      </div>
-    </div>
-  );
+  if (!accounts) {
+    return null;
+  } else {
+    const renderAccounts = accounts.map((account) => {
+      return <p> {`${account.id} : ${account.city}`} </p>;
+    });
+
+    return <div>{renderAccounts}</div>;
+  }
 }
